@@ -1,9 +1,10 @@
 import React from 'react';
+import Globe from '../Globe';
 
 const Home = () => {
   return (
     <div>
-      Corona 2
+      <Globe />
     </div>
   );
 };

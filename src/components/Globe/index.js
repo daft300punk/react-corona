@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import initGlobe from './libs/initGlobe';
 
 class Globe extends Component {
   constructor(props) {
@@ -6,12 +7,14 @@ class Globe extends Component {
   }
 
   componentDidMount() {
-
+    const jsonData = {};
+    initGlobe(jsonData);
+    window.addEventListener('resize', () => initGlobe(jsonData));
   }
 
   render() {
     return (
-      <div className="globe-container"/>
+      <div id="container"/>
     );
   }
 }
