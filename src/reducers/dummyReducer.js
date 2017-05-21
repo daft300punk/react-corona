@@ -1,5 +1,8 @@
 const dummyReducer = (state = null, action) => {
-  return state;
+  switch(action.type) {
+    default:
+      return state;
+  }
 };
 
 export default dummyReducer;
