@@ -1,27 +1,28 @@
-import React from 'react'
-import { browserHistory, Router } from 'react-router'
-import { Provider } from 'react-redux'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Link, IndexLink } from 'react-router';
 
+// This is a class-based component because the current
+// version of hot reloading won't hot reload a stateless
+// component at the top-level.
 class App extends React.Component {
-  static propTypes = {
-    store: PropTypes.object.isRequired,
-    routes: PropTypes.object.isRequired,
-  }
-
-  shouldComponentUpdate () {
-    return false
-  }
-
-  render () {
+  render() {
     return (
-      <Provider store={this.props.store}>
-        <div style={{ height: '100%' }}>
-          <Router history={browserHistory} children={this.props.routes} />
-        </div>
-      </Provider>
-    )
+      <div>
+        <IndexLink to="/">Home</IndexLink>
+        {' | '}
+        <Link to="/fuel-savings">Demo App</Link>
+        {' | '}
+        <Link to="/about">About</Link>
+        <br/>
+        {this.props.children}
+      </div>
+    );
   }
 }
 
-export default App
+App.propTypes = {
+  children: PropTypes.element
+};
+
+export default App;

@@ -1,18 +1,11 @@
-sudo: false
 language: node_js
+cache: yarn
 node_js:
-  - "5"
+  - "7"
   - "6"
-
-cache:
-  yarn: true
-  directories:
-    - node_modules
-
-script:
-  - yarn lint
-  - yarn test
-  - yarn build
-
+  - "5"
+  - "4"
+script: yarn run test:CI
 after_success:
-  - yarn codecov
+  # Send coverage data to coveralls.
+  - yarn run test:cover:CI
