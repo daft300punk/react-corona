@@ -6,6 +6,7 @@
     "npm": ">=3"
   },
   "scripts": {
+    "start": "node deploy/server.js",
     "preinstall": "node tools/nodeVersionCheck.js",
     "setup": "node tools/setup/setupMessage.js && npm install && node tools/setup/setup.js",
     "start-message": "babel-node tools/startMessage.js",
@@ -17,8 +18,8 @@
     "lint:watch": "npm run lint -- --watch",
     "clean-dist": "npm run remove-dist && mkdir dist",
     "remove-dist": "rimraf ./dist",
-    "prebuild": "npm run clean-dist && npm run lint && npm run test",
-    "start": "babel-node tools/build.js && node server.js",
+    "prebuild": "npm run lint && npm run test",
+    "build": "babel-node tools/build.js",
     "test": "jest",
     "test:CI": "babel-node tools/testCi.js",
     "test:cover": "npm run test -- --coverage ",
@@ -30,8 +31,7 @@
   "author": "Cory House",
   "license": "MIT",
   "dependencies": {
-    "compression": "1.6.2",
-    "express": "4.15.3",
+    "acorn": "5.0.3",
     "object-assign": "4.1.0",
     "react": "15.5.4",
     "react-dom": "15.5.4",
@@ -132,8 +132,7 @@
       "production": {
         "presets": [
           [
-            "env",
-            {
+            "env", {
               "es2015": {
                 "modules": false
               }
@@ -194,14 +193,12 @@
       "no-lone-blocks": 0,
       "jsx-quotes": 1,
       "react/display-name": [
-        1,
-        {
+        1, {
           "ignoreTranspilerName": false
         }
       ],
       "react/forbid-prop-types": [
-        1,
-        {
+        1, {
           "forbid": [
             "any"
           ]
