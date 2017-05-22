@@ -104,8 +104,6 @@ DAT.Globe = function(container, opts) {
 
     scene = new THREE.Scene();
 
-    console.log('0000', window.innerWidth, window.innerHeight);
-
     var geometry = new THREE.SphereGeometry(125, 40, 30);
 
     shader = Shaders['earth'];
@@ -158,6 +156,8 @@ DAT.Globe = function(container, opts) {
     container.addEventListener('mousedown', onMouseDown, false);
 
     container.addEventListener('mousewheel', onMouseWheel, false);
+
+    container.addEventListener('touchstart', onTouchStart, false);
 
     document.addEventListener('keydown', onDocumentKeyDown, false);
 
@@ -213,7 +213,8 @@ DAT.Globe = function(container, opts) {
       lng = data[i + 1];
       color = colorFnWrapper(data,i);
       size = data[i + 2];
-      size = size*200;
+      // todo: change radius of sphere according to window size
+      size = size*125;
       addPoint(lat, lng, size, color, subgeo);
     }
     if (opts.animated) {
@@ -257,9 +258,9 @@ DAT.Globe = function(container, opts) {
     var phi = (90 - lat) * Math.PI / 180;
     var theta = (180 - lng) * Math.PI / 180;
 
-    point.position.x = 200 * Math.sin(phi) * Math.cos(theta);
-    point.position.y = 200 * Math.cos(phi);
-    point.position.z = 200 * Math.sin(phi) * Math.sin(theta);
+    point.position.x = 125 * Math.sin(phi) * Math.cos(theta);
+    point.position.y = 125 * Math.cos(phi);
+    point.position.z = 125 * Math.sin(phi) * Math.sin(theta);
 
     point.lookAt(mesh.position);
 
@@ -293,6 +294,35 @@ DAT.Globe = function(container, opts) {
     container.style.cursor = 'move';
   }
 
+  function onTouchStart(event) {
+    event.preventDefault
+
+    container.addEventListener('touchmove', onTouchMove, false);
+    container.addEventListener('touchend', onTouchEnd, false);
+    container.addEventListener('touchcancel', onTouchCancel, false);
+
+    mouseOnDown.x = - event.touches[0].clientX;
+    mouseOnDown.y = event.touches[0].clientY;
+
+    targetOnDown.x = target.x;
+    targetOnDown.y = target.y;
+  }
+
+  function onTouchMove(event) {
+
+    mouse.x = - event.touches[0].clientX;
+    mouse.y = event.touches[0].clientY;
+
+    var zoomDamp = distance/1000;
+
+    // .15 for faster rotations on touch events (for mobile devices)
+    target.x = targetOnDown.x + (mouse.x - mouseOnDown.x) * 0.015 * zoomDamp;
+    target.y = targetOnDown.y + (mouse.y - mouseOnDown.y) * 0.015 * zoomDamp;
+
+    target.y = target.y > PI_HALF ? PI_HALF : target.y;
+    target.y = target.y < - PI_HALF ? - PI_HALF : target.y;
+  }
+
   function onMouseMove(event) {
     mouse.x = - event.clientX;
     mouse.y = event.clientY;
@@ -313,10 +343,22 @@ DAT.Globe = function(container, opts) {
     container.style.cursor = 'auto';
   }
 
+  function onTouchEnd(event) {
+    container.removeEventListener('touchmove', onTouchMove, false);
+    container.removeEventListener('touchend', onTouchEnd, false);
+    container.removeEventListener('touchcancel', onTouchCancel, false);
+  }
+
   function onMouseOut(event) {
     container.removeEventListener('mousemove', onMouseMove, false);
     container.removeEventListener('mouseup', onMouseUp, false);
     container.removeEventListener('mouseout', onMouseOut, false);
+  }
+
+  function onTouchCancel(evnet) {
+    container.removeEventListener('touchmove', onTouchMove, false);
+    container.removeEventListener('touchend', onTouchEnd, false);
+    container.removeEventListener('touchcancel', onTouchCancel, false);
   }
 
   function onMouseWheel(event) {
