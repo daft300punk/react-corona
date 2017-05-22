@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 /**
  * dat.globe Javascript WebGL Globe Toolkit
  * https://github.com/dataarts/webgl-globe
@@ -95,12 +97,16 @@ DAT.Globe = function(container, opts) {
     w = container.offsetWidth || window.innerWidth;
     h = container.offsetHeight || window.innerHeight;
 
+    console.log(w, h, window.innerHeight, window.innerWidth, container.offsetHeight, container.offsetWidth);
+
     camera = new THREE.PerspectiveCamera(30, w / h, 1, 10000);
     camera.position.z = distance;
 
     scene = new THREE.Scene();
 
-    var geometry = new THREE.SphereGeometry(200, 40, 30);
+    console.log('0000', window.innerWidth, window.innerHeight);
+
+    var geometry = new THREE.SphereGeometry(125, 40, 30);
 
     shader = Shaders['earth'];
     uniforms = THREE.UniformsUtils.clone(shader.uniforms);
