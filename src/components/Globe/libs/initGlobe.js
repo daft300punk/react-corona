@@ -1,6 +1,8 @@
 import DAT from './globe';
 
-export default function initGlobe(data) {
+import data from './dummyData';
+
+export default function initGlobe() {
   const container = document.getElementById('container');
   const globe = new DAT.Globe(container);
 
