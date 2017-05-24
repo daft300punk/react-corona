@@ -141,10 +141,14 @@ DAT.Globe = function(container, opts) {
     mesh.scale.set( 1.1, 1.1, 1.1 );
     scene.add(mesh);
 
-    geometry = new THREE.BoxGeometry(0.75, 0.75, 1);
-    geometry.applyMatrix(new THREE.Matrix4().makeTranslation(0,0,-0.5));
+    geometry = new THREE.CircleGeometry(2, 20);
+    console.log(geometry);
+    //geometry.applyMatrix(new THREE.Matrix4().makeTranslation(0,0,-0.5));
+    geometry.applyMatrix(new THREE.Matrix4().makeRotationX(Math.PI));
 
     point = new THREE.Mesh(geometry);
+
+    console.log(point);
 
     renderer = new THREE.WebGLRenderer({antialias: true});
     renderer.setSize(w, h);

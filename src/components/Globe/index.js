@@ -7,11 +7,10 @@ class Globe extends Component {
   }
 
   componentDidMount() {
-    const jsonData = {};
-    initGlobe(jsonData);
+    initGlobe();
     window.addEventListener('resize', () => {
       document.getElementsByTagName('canvas')[0].remove();
-      initGlobe(jsonData);
+      initGlobe();
     });
   }
 
