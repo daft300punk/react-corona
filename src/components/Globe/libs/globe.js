@@ -13,7 +13,14 @@
  * http://www.apache.org/licenses/LICENSE-2.0
  */
 
-import THREE from './three.min';
+import * as THREE from './three.min';
+import THREEx from './threex.domevents';
+
+console.log(THREEx);
+
+var allPoints = [];
+
+var globalEvent;
 
 var DAT = DAT || {};
 
@@ -72,7 +79,7 @@ DAT.Globe = function(container, opts) {
   };
 
   var camera, scene, renderer, w, h;
-  var mesh, atmosphere, point;
+  var mesh, atmosphere, point, domEvents;
 
   var overRenderer;
 
@@ -96,8 +103,6 @@ DAT.Globe = function(container, opts) {
     var shader, uniforms, material;
     w = container.offsetWidth || window.innerWidth;
     h = container.offsetHeight || window.innerHeight;
-
-    console.log(w, h, window.innerHeight, window.innerWidth, container.offsetHeight, container.offsetWidth);
 
     camera = new THREE.PerspectiveCamera(30, w / h, 1, 10000);
     camera.position.z = distance;
@@ -141,14 +146,11 @@ DAT.Globe = function(container, opts) {
     mesh.scale.set( 1.1, 1.1, 1.1 );
     scene.add(mesh);
 
-    geometry = new THREE.CircleGeometry(2, 20);
-    console.log(geometry);
+    geometry = new THREE.CircleGeometry(.5, 20);
     //geometry.applyMatrix(new THREE.Matrix4().makeTranslation(0,0,-0.5));
     geometry.applyMatrix(new THREE.Matrix4().makeRotationX(Math.PI));
 
     point = new THREE.Mesh(geometry);
-
-    console.log(point);
 
     renderer = new THREE.WebGLRenderer({antialias: true});
     renderer.setSize(w, h);
@@ -156,6 +158,10 @@ DAT.Globe = function(container, opts) {
     renderer.domElement.style.position = 'absolute';
 
     container.appendChild(renderer.domElement);
+
+    domEvents = new THREEx.DomEvents(camera, renderer.domElement);
+    console.log(domEvents);
+
 
     container.addEventListener('mousedown', onMouseDown, false);
 
@@ -217,7 +223,6 @@ DAT.Globe = function(container, opts) {
       lng = data[i + 1];
       color = colorFnWrapper(data,i);
       size = data[i + 2];
-      // todo: change radius of sphere according to window size
       size = size*125;
       addPoint(lat, lng, size, color, subgeo);
     }
@@ -253,7 +258,15 @@ DAT.Globe = function(container, opts) {
               morphTargets: true
             }));
       }
+
       scene.add(this.points);
+
+      domEvents.addEventListener(this.points, 'click', (event) => {
+        globalEvent = event;
+        for(let i = 0; i < globalEvent.target.geometry.vertices.length; i++)
+          console.log(globalEvent.target.geometry.vertices[i].x === 15.614005681512543);
+        console.log(globalEvent);
+      });
     }
   }
 
@@ -265,6 +278,8 @@ DAT.Globe = function(container, opts) {
     point.position.x = 125 * Math.sin(phi) * Math.cos(theta);
     point.position.y = 125 * Math.cos(phi);
     point.position.z = 125 * Math.sin(phi) * Math.sin(theta);
+
+    console.log(point.position.x, point.position.y, point.position.z);
 
     point.lookAt(mesh.position);
 
@@ -280,6 +295,7 @@ DAT.Globe = function(container, opts) {
       point.updateMatrix();
     }
     subgeo.merge(point.geometry, point.matrix);
+    allPoints.push(point);
   }
 
   function onMouseDown(event) {
