@@ -1,16 +1,35 @@
 import React from 'react';
 import './style.scss';
+import {categories} from '../../constants/categoriesAndFilters';
 
-const Filters = () => {
+const Filters = ({
+  selectedCategory,
+  selectedFilter,
+  changeSelectedFilter
+}) => {
+  const filters = categories[selectedCategory].filters;
   return(
     <div className="container">
-      <h2>ACTIVITIES</h2>
-      <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+      <h2>{selectedCategory.toUpperCase()}</h2>
+      <p>{categories[selectedCategory].text}</p>
       <h4>Select Filters</h4>
       <ul>
-        <li>Design</li>
-        <li>Data Science</li>
-        <li>Development</li>
+        {
+          filters.map((filter, i) => {
+            let className = '';
+            if(selectedFilter === filters[i].toLowerCase())
+              className += 'active';
+            return (
+              <li
+                key={i}
+                onClick={() => changeSelectedFilter(filters[i])}
+                className={className}
+              >
+                {filter}
+              </li>
+            )
+          })
+        }
       </ul>
     </div>
   );
