@@ -4,7 +4,7 @@
     text-align: center;
     animation: fadein 2s;
     position: absolute;
-    top: 50%;
+    top: calc(50% - 40px);
     left: 50%;
     transform: translate(-50%, -50%);
     color: white;

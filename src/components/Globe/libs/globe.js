@@ -112,7 +112,7 @@ DAT.Globe = function(container, typeViz, sizeOfPoint) {
 
     var shader, uniforms, material;
     w = container.offsetWidth || window.innerWidth;
-    h = container.offsetHeight || window.innerHeight;
+    h = container.offsetHeight || window.innerHeight - document.getElementsByClassName('bottombar')[0].offsetHeight;
 
     camera = new THREE.PerspectiveCamera(30, w / h, 1, 10000);
     camera.position.z = distance;

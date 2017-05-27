@@ -9,12 +9,12 @@ export default function initGlobe() {
   window.data = dataFlat;
   const sizeOfPoint = 2;
 
-  if(dataMagnitude[0].magnitude) {
+  if(dataFlat[0].magnitude) {
     globe = new DAT.Globe(container, 'magnitude', sizeOfPoint);
   } else {
     globe = new DAT.Globe(container, 'flat', sizeOfPoint);
   }
-  globe.addData(dataMagnitude);
+  globe.addData(dataFlat);
 
   globe.createPoints();
   globe.animate();
