@@ -1,6 +1,7 @@
 import React from 'react';
 import './style.scss';
 import {categoryTypes} from '../../constants/categoriesAndFilters';
+import PropTypes from 'prop-types';
 
 const BottomBar = ({
   selectedCategory,
@@ -26,11 +27,16 @@ const BottomBar = ({
             >
               {categoryText.toUpperCase()}
             </div>
-          )
+          );
         })
       }
     </div>
   );
+};
+
+BottomBar.propTypes = {
+  selectedCategory: PropTypes.string,
+  changeSelectedCategory: PropTypes.func
 };
 
 export default BottomBar;

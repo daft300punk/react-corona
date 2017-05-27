@@ -1,7 +1,8 @@
 import React from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import Filters from '../components/Filters';
 import {changeSelectedFilter} from '../actions';
+import PropTypes from 'prop-types';
 
 const FiltersContainer = ({
   selectedCategory,
@@ -23,8 +24,14 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  changeSelectedFilter: (filter) => { dispatch(changeSelectedFilter(filter))}
+  changeSelectedFilter: (filter) => { dispatch(changeSelectedFilter(filter)); }
 });
+
+FiltersContainer.propTypes = {
+  selectedCategory: PropTypes.string,
+  selectedFilter: PropTypes.string,
+  changeSelectedFilter: PropTypes.func
+};
 
 export default connect(
   mapStateToProps,

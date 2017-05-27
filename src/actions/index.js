@@ -26,4 +26,4 @@ export const changeSelectedCategory = (selectedCategory) => (dispatch, getState)
     dispatch(category(selectedCategory));
     initGlobe();
   }
-}
+};

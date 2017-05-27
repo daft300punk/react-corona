@@ -1,9 +1,10 @@
 import React from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import BottomBar from '../components/BottomBar';
 import {changeSelectedCategory} from '../actions';
+import PropTypes from 'prop-types';
 
-const FiltersContainer = ({
+const BottomBarContainer = ({
   selectedCategory,
   changeSelectedCategory
 }) => {
@@ -20,10 +21,15 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  changeSelectedCategory: (filter) => { dispatch(changeSelectedCategory(filter))}
+  changeSelectedCategory: (filter) => { dispatch(changeSelectedCategory(filter)); }
 });
+
+BottomBarContainer.propTypes = {
+  selectedCategory: PropTypes.string,
+  changeSelectedCategory: PropTypes.func
+};
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(FiltersContainer);
+)(BottomBarContainer);

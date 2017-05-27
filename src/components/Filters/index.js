@@ -1,6 +1,7 @@
 import React from 'react';
 import './style.scss';
 import {categories} from '../../constants/categoriesAndFilters';
+import PropTypes from 'prop-types';
 
 const Filters = ({
   selectedCategory,
@@ -19,7 +20,6 @@ const Filters = ({
             let className = '';
             if(selectedFilter === filter.toLowerCase())
               className += 'active';
-            console.log(filter.toLowerCase(), selectedFilter);
             return (
               <li
                 key={i}
@@ -28,12 +28,18 @@ const Filters = ({
               >
                 {filter}
               </li>
-            )
+            );
           })
         }
       </ul>
     </div>
   );
+};
+
+Filters.propTypes = {
+  selectedCategory: PropTypes.string,
+  selectedFilter: PropTypes.string,
+  changeSelectedFilter: PropTypes.func
 };
 
 export default Filters;
