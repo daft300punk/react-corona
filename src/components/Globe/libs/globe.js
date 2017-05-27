@@ -144,7 +144,7 @@ DAT.Globe = function(container, opts) {
     mesh.scale.set( 1.1, 1.1, 1.1 );
     scene.add(mesh);
 
-    geometry = new THREE.CircleGeometry(.5, 20);
+    geometry = new THREE.CircleGeometry(2, 20);
     //geometry.applyMatrix(new THREE.Matrix4().makeTranslation(0,0,-0.5));
     geometry.applyMatrix(new THREE.Matrix4().makeRotationX(Math.PI));
 

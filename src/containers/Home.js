@@ -1,8 +1,8 @@
 import React from 'react';
 import Globe from '../components/Globe';
 import Welcome from '../components/Welcome';
-import BottomBar from '../components/BottomBar';
-import Filters from './Filters';
+import BottomBarContainer from './BottomBar';
+import FiltersContainer from './Filters';
 import {connect} from 'react-redux';
 
 class Home extends React.Component {
@@ -30,8 +30,8 @@ class Home extends React.Component {
       <div>
         <Globe />
         {this.state.showWelcome && <Welcome />}
-        <Filters />
-        <BottomBar />
+        <FiltersContainer />
+        <BottomBarContainer />
       </div>
     );
   }

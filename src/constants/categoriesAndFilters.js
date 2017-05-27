@@ -1,55 +1,55 @@
 export const categories = {
-  'activities': {
+  'all activity': {
     text: '1. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
     filters: [
-      'All',
-      'Development',
-      'Design',
-      'Data Science'
+      'All Time',
+      'Last Week',
+      'Last Month',
+      'Last Year'
     ]
   },
-  'leaderboard': {
+  'development': {
     text: '1. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
     filters: [
-      'All',
-      'Development',
-      'Design',
-      'Data Science'
+      'All Time',
+      'Last Week',
+      'Last Month',
+      'Last Year'
     ]
   },
-  'submissions': {
+  'design': {
     text: '1. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
     filters: [
-      'All',
-      'Development',
-      'Design',
-      'Data Science'
+      'All Time',
+      'Last Week',
+      'Last Month',
+      'Last Year'
     ]
   },
-  'tools used': {
+  'data science': {
     text: '1. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
     filters: [
-      'All',
-      'Development',
-      'Design',
-      'Data Science'
+      'All Time',
+      'Last Week',
+      'Last Month',
+      'Last Year'
     ]
   },
-  'tco winners': {
+  'top winners': {
     text: '1. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
     filters: [
-      'All',
-      'Development',
-      'Design',
-      'Data Science'
+      'All Time',
+      'Last Week',
+      'Last Month',
+      'Last Year'
     ]
   }
 };
 
 export const categoryTypes = [
-  'activities',
-  'leaderboard',
-  'submissions',
-  'tools used',
-  'tco winners'
+  'all activity',
+  'development',
+  'design',
+  'data science',
+  'top winners'
 ];
