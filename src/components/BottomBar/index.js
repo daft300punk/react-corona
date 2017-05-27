@@ -9,11 +9,11 @@ const BottomBar = () => {
           <img src={require('./logo.png')}/>
         </a>
       </div>
-      <div>Option 1</div>
-      <div>Option 1</div>
-      <div>Option 1</div>
-      <div>Option 1</div>
-      <div>Option 1</div>
+      <div>ACTIVITY</div>
+      <div>LEADERBOARD</div>
+      <div>SUBMISSIONS</div>
+      <div>TOOLS USED</div>
+      <div>TCO WINNERS</div>     
     </div>
   );
 };
