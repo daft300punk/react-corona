@@ -27,4 +27,12 @@
       display: block;
     }
   }
+
+  .category-text {
+    cursor: pointer;
+  }
+
+  .active {
+    border-bottom: 4px solid #28a9e0;
+  }
 }

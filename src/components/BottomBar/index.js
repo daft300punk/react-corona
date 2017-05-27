@@ -1,7 +1,11 @@
 import React from 'react';
 import './style.scss';
+import {categoryTypes} from '../../constants/categoriesAndFilters';
 
-const BottomBar = () => {
+const BottomBar = ({
+  selectedCategory,
+  changeSelectedCategory
+}) => {
   return (
     <div className="bottombar">
       <div>
@@ -9,11 +13,22 @@ const BottomBar = () => {
           <img src={require('./logo.png')}/>
         </a>
       </div>
-      <div>ACTIVITY</div>
-      <div>LEADERBOARD</div>
-      <div>SUBMISSIONS</div>
-      <div>TOOLS USED</div>
-      <div>TCO WINNERS</div>     
+      {
+        categoryTypes.map((categoryText, i) => {
+          let className='';
+          if(selectedCategory === categoryText)
+            className += 'active';
+          return (
+            <div
+              key={i}
+              onClick={() => {changeSelectedCategory(categoryTypes[i]);}}
+              className={'category-text ' + className}
+            >
+              {categoryText.toUpperCase()}
+            </div>
+          )
+        })
+      }
     </div>
   );
 };
