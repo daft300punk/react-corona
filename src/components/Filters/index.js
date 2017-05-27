@@ -17,8 +17,9 @@ const Filters = ({
         {
           filters.map((filter, i) => {
             let className = '';
-            if(selectedFilter === filters[i].toLowerCase())
+            if(selectedFilter === filter.toLowerCase())
               className += 'active';
+            console.log(filter.toLowerCase(), selectedFilter);
             return (
               <li
                 key={i}
