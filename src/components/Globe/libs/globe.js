@@ -16,8 +16,6 @@
 import * as THREE from './three.min';
 import THREEx from './threex.domevents';
 
-console.log(THREEx);
-
 var allPoints = [];
 
 var globalEvent;
@@ -160,7 +158,6 @@ DAT.Globe = function(container, opts) {
     container.appendChild(renderer.domElement);
 
     domEvents = new THREEx.DomEvents(camera, renderer.domElement);
-    console.log(domEvents);
 
 
     container.addEventListener('mousedown', onMouseDown, false);
@@ -244,11 +241,8 @@ DAT.Globe = function(container, opts) {
             }));
       } else {
         if (this._baseGeometry.morphTargets.length < 8) {
-          console.log('t l',this._baseGeometry.morphTargets.length);
           var padding = 8-this._baseGeometry.morphTargets.length;
-          console.log('padding', padding);
           for(var i=0; i<=padding; i++) {
-            console.log('padding',i);
             this._baseGeometry.morphTargets.push({'name': 'morphPadding'+i, vertices: this._baseGeometry.vertices});
           }
         }
@@ -263,9 +257,6 @@ DAT.Globe = function(container, opts) {
 
       domEvents.addEventListener(this.points, 'click', (event) => {
         globalEvent = event;
-        for(let i = 0; i < globalEvent.target.geometry.vertices.length; i++)
-          console.log(globalEvent.target.geometry.vertices[i].x === 15.614005681512543);
-        console.log(globalEvent);
       });
     }
   }
@@ -278,8 +269,6 @@ DAT.Globe = function(container, opts) {
     point.position.x = 125 * Math.sin(phi) * Math.cos(theta);
     point.position.y = 125 * Math.cos(phi);
     point.position.z = 125 * Math.sin(phi) * Math.sin(theta);
-
-    console.log(point.position.x, point.position.y, point.position.z);
 
     point.lookAt(mesh.position);
 
