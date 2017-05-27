@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import dummyReducer from './dummyReducer';
 import { routerReducer } from 'react-router-redux';
+import selectedOptions from './selectedOptions';
 
  export default combineReducers({
-   dummyReducer,
+   selectedOptions,
    routing: routerReducer
  });
