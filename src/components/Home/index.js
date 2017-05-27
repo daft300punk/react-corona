@@ -2,6 +2,7 @@ import React from 'react';
 import Globe from '../Globe';
 import Welcome from '../Welcome';
 import BottomBar from '../BottomBar';
+import Filters from '../Filters';
 
 class Home extends React.Component {
   constructor(props) {
@@ -28,6 +29,7 @@ class Home extends React.Component {
       <div>
         <Globe />
         {this.state.showWelcome && <Welcome />}
+        <Filters />
         <BottomBar />
       </div>
     );
