@@ -16,21 +16,33 @@
 import * as THREE from './three.min';
 import THREEx from './threex.domevents';
 
+const COLOR = {
+  'des': {
+    r: .6,
+    g: .2,
+    b: .3
+  },
+  'dsc': {
+    r: .5,
+    g: .8,
+    b: .5
+  },
+  'dev': {
+    r: .3,
+    g: .8,
+    b: .3
+  }
+};
+
 var allPoints = [];
 
 var globalEvent;
 
 var DAT = DAT || {};
 
-DAT.Globe = function(container, opts) {
-  opts = opts || {};
+DAT.Globe = function(container, typeViz, sizeOfPoint) {
 
-  var colorFn = opts.colorFn || function(x) {
-    var c = new THREE.Color();
-    c.setHSL( ( 0.6 - ( x * 0.5 ) ), 1.0, 0.5 );
-    return c;
-  };
-
+  console.log(typeViz);
   var Shaders = {
     'earth' : {
       uniforms: {
@@ -144,7 +156,12 @@ DAT.Globe = function(container, opts) {
     mesh.scale.set( 1.1, 1.1, 1.1 );
     scene.add(mesh);
 
-    geometry = new THREE.CircleGeometry(2, 20);
+    if(typeViz == 'flat') {
+      geometry = new THREE.CircleGeometry(sizeOfPoint, 20);
+    } else {
+      geometry = new THREE.BoxGeometry(sizeOfPoint, sizeOfPoint, 1);
+    }
+
     //geometry.applyMatrix(new THREE.Matrix4().makeTranslation(0,0,-0.5));
     geometry.applyMatrix(new THREE.Matrix4().makeRotationX(Math.PI));
 
@@ -182,52 +199,19 @@ DAT.Globe = function(container, opts) {
   function addData(data, opts) {
     var lat, lng, size, color, i, step, colorFnWrapper;
 
-    opts.animated = opts.animated || false;
-    this.is_animated = opts.animated;
-    opts.format = opts.format || 'magnitude'; // other option is 'legend'
-    if (opts.format === 'magnitude') {
-      step = 3;
-      colorFnWrapper = function(data, i) { return colorFn(data[i+2]); }
-    } else if (opts.format === 'legend') {
-      step = 4;
-      colorFnWrapper = function(data, i) { return colorFn(data[i+3]); }
-    } else {
-      throw('error: format not supported: '+opts.format);
-    }
-
-    if (opts.animated) {
-      if (this._baseGeometry === undefined) {
-        this._baseGeometry = new THREE.Geometry();
-        for (i = 0; i < data.length; i += step) {
-          lat = data[i];
-          lng = data[i + 1];
-//        size = data[i + 2];
-          color = colorFnWrapper(data,i);
-          size = 0;
-          addPoint(lat, lng, size, color, this._baseGeometry);
-        }
-      }
-      if(this._morphTargetId === undefined) {
-        this._morphTargetId = 0;
-      } else {
-        this._morphTargetId += 1;
-      }
-      opts.name = opts.name || 'morphTarget'+this._morphTargetId;
-    }
     var subgeo = new THREE.Geometry();
-    for (i = 0; i < data.length; i += step) {
-      lat = data[i];
-      lng = data[i + 1];
-      color = colorFnWrapper(data,i);
-      size = data[i + 2];
+    for (i = 0; i < data.length; i ++) {
+      lat = data[i].lat;
+      lng = data[i].long;
+      color = COLOR[data[i].type];
+      if(data[i].magnitude) size = data[i].magnitude;
+      else size = 0;
       size = size*125;
       addPoint(lat, lng, size, color, subgeo);
     }
-    if (opts.animated) {
-      this._baseGeometry.morphTargets.push({'name': opts.name, vertices: subgeo.vertices});
-    } else {
+
       this._baseGeometry = subgeo;
-    }
+
 
   };
 
