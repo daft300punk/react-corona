@@ -1,9 +1,9 @@
 import {makeDummyDataFlat, makeDummyDataMagnitude} from './makeDummyData';
 
 const dataFlatAll = makeDummyDataFlat();
-const dataFlatDesign = dataFlatAll.filter((data) => {if(data.type == 'des') return data});
-const dataFlatDevelopment = dataFlatAll.filter((data) => {if(data.type == 'dev') return data});
-const dataFlatDataScience = dataFlatAll.filter((data) => {if(data.type == 'dsc') return data});
+const dataFlatDesign = dataFlatAll.filter((data) => { if(data.type == 'des') return data; });
+const dataFlatDevelopment = dataFlatAll.filter((data) => { if(data.type == 'dev') return data; });
+const dataFlatDataScience = dataFlatAll.filter((data) => { if(data.type == 'dsc') return data; });
 
 const dataMagnitude = makeDummyDataMagnitude();
 
@@ -20,7 +20,7 @@ export default function getDataApi(category, filter) {
       if(category == 'top winners')
         return resolve(JSON.stringify(dataMagnitude));
       reject('error fetching data');
-    }
+    };
   return new Promise(function(resolve, reject) {
     setTimeout(helper, 1000, category, filter, resolve, reject);
   });

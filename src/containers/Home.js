@@ -17,7 +17,7 @@ class Home extends React.Component {
 
   componentDidMount() {
     this.startTimer();
-    const { getDataFirstTime, isDataFetchedFirsTime } = this.props;
+    const { getDataFirstTime } = this.props;
     getDataFirstTime();
   }
 

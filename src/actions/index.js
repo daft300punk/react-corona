@@ -47,7 +47,7 @@ export const receiveData = (data) => ({
 export const error = (err) => ({
   type: actionTypes.ERROR,
   errorMessage: err
-})
+});
 
 export const getData = () => (dispatch, getState) => {
   dispatch(requestData());

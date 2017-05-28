@@ -10,6 +10,7 @@ const initialState = {
 };
 
 export default function(state = initialState, action) {
+  const viz = action.data[0].magnitude ? 'magnitude' : 'flat';
   switch(action.type) {
     case actionTypes.REQUEST_DATA:
       return Object.assign({}, state, {
@@ -17,7 +18,6 @@ export default function(state = initialState, action) {
       });
 
     case actionTypes.RECEIVE_DATA:
-      const viz = action.data[0].magnitude ? 'magnitude' : 'flat';
       return Object.assign({}, state, {
         data: [...(action.data)],
         isRequesting: false,
