@@ -56,3 +56,10 @@
     border: 1px solid #8cc543;
   }
 }
+
+@media only screen 
+and (max-width: 1024px) {
+  .container {
+    display: none;
+  }
+}

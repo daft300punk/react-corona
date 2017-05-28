@@ -4,8 +4,6 @@ export default function initGlobe(data, sizeOfPoint, type) {
   const container = document.getElementById('container');
   let globe;
 
-  window.data = data;
-
   if(type == 'magnitude') {
     globe = new DAT.Globe(container, 'magnitude', sizeOfPoint);
   } else {
