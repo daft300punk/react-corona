@@ -12,3 +12,10 @@ body {
 * {
   box-sizing: border-box;
 }
+
+.loader {
+  position: absolute;
+  top: calc(50% - 40px);
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
