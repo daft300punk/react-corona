@@ -11,45 +11,23 @@ import Loader from 'halogen/PulseLoader';
 class Home extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      showWelcome: false
-    };
   }
 
   componentDidMount() {
-    this.startTimer();
     const { getDataFirstTime } = this.props;
     getDataFirstTime();
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { isDataFetchedFirstTime } = nextProps;
-    if(isDataFetchedFirstTime) {
-      this.setState({
-        showWelcome: true
-      });
-      this.startTimer();
-    }         
-  }
-
-  startTimer() {
-    setTimeout(() => {
-      this.setState({
-        showWelcome: false
-      });
-    }, 2500);
-  }
-
   render() {
+    const {isRequesting} = this.props;
     return(
       <div>
-        <Globe />
-        {this.state.showWelcome && <Welcome />}
         {
           (isRequesting == true) ?
           <Loader color="#fff" size="12px" className="loader"/> :
           <Globe />
         }
+        {this.props.showAnimation && <Welcome />}
         <FiltersContainer />
         <BottomBarContainer />
       </div>
@@ -59,11 +37,13 @@ class Home extends React.Component {
 
 Home.propTypes = {
   getDataFirstTime: PropTypes.func,
-  isDataFetchedFirstTime: PropTypes.bool
+  isRequesting: PropTypes.bool,
+  showAnimation: PropTypes.bool
 };
 
 const mapStateToProps = (state) => ({
-  isDataFetchedFirstTime: state.globeData.isDataFetchedFirstTime
+  isRequesting: state.globeData.isRequesting,
+  showAnimation: state.firstLoad.showAnimation
 });
 
 const mapDispatchToProps = (dispatch) => ({

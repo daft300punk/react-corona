@@ -31,7 +31,7 @@ const mapStateToProps = (state) => ({
 
 
 GlobeContainer.propTypes = {
-  data: PropTypes.object,
+  data: PropTypes.array,
   vizType: PropTypes.string,
   sizeOfPoint: PropTypes.number,
   isRequesting: PropTypes.bool
