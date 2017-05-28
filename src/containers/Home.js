@@ -6,6 +6,7 @@ import FiltersContainer from './Filters';
 import {connect} from 'react-redux';
 import {getData} from '../actions';
 import PropTypes from 'prop-types';
+import Loader from 'halogen/PulseLoader';
 
 class Home extends React.Component {
   constructor(props) {
@@ -44,6 +45,11 @@ class Home extends React.Component {
       <div>
         <Globe />
         {this.state.showWelcome && <Welcome />}
+        {
+          (isRequesting == true) ?
+          <Loader color="#fff" size="12px" className="loader"/> :
+          <Globe />
+        }
         <FiltersContainer />
         <BottomBarContainer />
       </div>
