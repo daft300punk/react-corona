@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import initGlobe from './libs/initGlobe';
+import PropTypes from 'prop-types';
 
 class Globe extends Component {
   constructor(props) {
@@ -7,10 +8,17 @@ class Globe extends Component {
   }
 
   componentDidMount() {
-    initGlobe();
+    const {
+      data,
+      sizeOfPoint,
+      vizType
+    } = this.props;
+
+    initGlobe(data, sizeOfPoint, vizType);
+    
     window.addEventListener('resize', () => {
       document.getElementsByTagName('canvas')[0].remove();
-      initGlobe();
+      initGlobe(data, sizeOfPoint, vizType);
     });
   }
 
@@ -20,5 +28,11 @@ class Globe extends Component {
     );
   }
 }
+
+Globe.propTypes = {
+  data: PropTypes.array,
+  sizeOfPoint: PropTypes.number,
+  vizType: PropTypes.string
+};
 
 export default Globe;

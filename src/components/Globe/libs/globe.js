@@ -20,17 +20,20 @@ const COLOR = {
   'des': {
     r: 40 / 255,
     g: 169 / 255,
-    b: 224 / 255
+    b: 224 / 255,
+    a: .1
   },
   'dsc': {
     r: 140 / 255,
     g: 197 / 255,
-    b: 67 / 255
+    b: 67 / 255,
+    a: .1
   },
   'dev': {
     r: 246 / 255,
     g: 147 / 255,
-    b: 34 / 255
+    b: 34 / 255,
+    a: .1
   }
 };
 
@@ -42,7 +45,6 @@ var DAT = DAT || {};
 
 DAT.Globe = function(container, typeViz, sizeOfPoint) {
 
-  console.log(typeViz);
   var Shaders = {
     'earth' : {
       uniforms: {

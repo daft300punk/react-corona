@@ -1,21 +1,20 @@
 import DAT from './globe';
 
-import {dataFlat, dataMagnitude} from './dummyData';
-
-export default function initGlobe() {
+export default function initGlobe(data, sizeOfPoint, type) {
   const container = document.getElementById('container');
   let globe;
 
-  window.data = dataFlat;
-  const sizeOfPoint = 2;
+  window.data = data;
 
-  if(dataFlat[0].magnitude) {
+  if(type == 'magnitude') {
     globe = new DAT.Globe(container, 'magnitude', sizeOfPoint);
   } else {
     globe = new DAT.Globe(container, 'flat', sizeOfPoint);
   }
-  globe.addData(dataFlat);
+  if(data && data.length) {
+    globe.addData(data);
 
-  globe.createPoints();
-  globe.animate();
+    globe.createPoints();
+    globe.animate();  
+  }
 }
