@@ -15,27 +15,9 @@
 
 import * as THREE from './three.min';
 import THREEx from './threex.domevents';
+import {COLORS_NORMALIZED} from '../../../constants/colors';
 
-const COLOR = {
-  'des': {
-    r: 40 / 255,
-    g: 169 / 255,
-    b: 224 / 255,
-    a: .1
-  },
-  'dsc': {
-    r: 140 / 255,
-    g: 197 / 255,
-    b: 67 / 255,
-    a: .1
-  },
-  'dev': {
-    r: 246 / 255,
-    g: 147 / 255,
-    b: 34 / 255,
-    a: .1
-  }
-};
+const COLOR = COLORS_NORMALIZED;
 
 var allPoints = [];
 
