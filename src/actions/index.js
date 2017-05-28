@@ -2,6 +2,16 @@ import * as actionTypes from '../constants/actionTypes';
 import initGlobe from '../components/Globe/libs/initGlobe';
 import getDataApi from '../utils/mockDataApi';
 
+// on first load
+const firstLoad = () => ({
+  type: actionTypes.FIRST_LOAD,
+});
+
+const animate = (showAnimation) => ({
+  type: actionTypes.SHOW_ANIMATION,
+  showAnimation: showAnimation
+})
+
 // Filters and categories
 export const category = (selectedCategory) => ({
   type: actionTypes.CHANGE_SELECTED_CATEGORY,
@@ -17,6 +27,7 @@ export const changeSelectedFilter = (selectedFilter) => (dispatch, getState) => 
   const currentFilter = getState().selectedOptions.filter;
   if(selectedFilter.toLowerCase() !== currentFilter) {
     dispatch(filter(selectedFilter));
+
     dispatch(getData());
     initGlobe();
   }
@@ -24,7 +35,7 @@ export const changeSelectedFilter = (selectedFilter) => (dispatch, getState) => 
 
 export const changeSelectedCategory = (selectedCategory) => (dispatch, getState) => {
   const currentCategory = getState().selectedOptions.category;
-
+  
   if(selectedCategory.toLowerCase() !== currentCategory) {
     dispatch(category(selectedCategory));
     dispatch(getData());
@@ -50,12 +61,26 @@ export const error = (err) => ({
 });
 
 export const getData = () => (dispatch, getState) => {
+  const isFirstLoad = getState().firstLoad.isFirstLoad;
+
   dispatch(requestData());
   const category = getState().selectedOptions.category;
   const filter = getState().selectedOptions.filter;
   getDataApi(category, filter)
-  .then(res => dispatch(receiveData(JSON.parse(res))))
+  .then(res => {
+    dispatch(receiveData(JSON.parse(res)));
+    if(isFirstLoad) welcomeHelper(dispatch);
+  })
   .catch(err => {
     dispatch(error(err));
   });
 };
+
+const welcomeHelper = (dispatch) => {
+  dispatch(firstLoad());
+  dispatch(animate(true));
+  setTimeout(() => {
+    dispatch(animate(false));
+  }, 2500);
+};
+
