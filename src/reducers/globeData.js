@@ -10,7 +10,9 @@ const initialState = {
 };
 
 export default function(state = initialState, action) {
-  const viz = action.data[0].magnitude ? 'magnitude' : 'flat';
+  let viz = 'flat';
+  if(action.data && action.data.length > 0)
+    viz = action.data[0].magnitude ? 'magnitude' : 'flat';
   switch(action.type) {
     case actionTypes.REQUEST_DATA:
       return Object.assign({}, state, {
