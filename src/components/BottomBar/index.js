@@ -7,6 +7,17 @@ const BottomBar = ({
   selectedCategory,
   changeSelectedCategory
 }) => {
+  const modifyClassNameHelper = (categoryText) => {
+    let className = '';
+    if(categoryText == 'design') 
+      className += 'des';
+    if(categoryText == 'data science')
+      className += 'dsc';
+    if(categoryText == 'development')
+      className += 'dev';
+    return className;
+  };
+
   return (
     <div className="bottombar">
       <div>
@@ -19,13 +30,15 @@ const BottomBar = ({
           let className='';
           if(selectedCategory === categoryText)
             className += 'active';
+          const classSpan = modifyClassNameHelper(categoryText);
+          console.log(className);
           return (
             <div
               key={i}
               onClick={() => {changeSelectedCategory(categoryTypes[i]);}}
               className={'category-text ' + className}
             >
-              {categoryText.toUpperCase()}
+              <span className={classSpan}>{categoryText.toUpperCase()}</span>
             </div>
           );
         })
