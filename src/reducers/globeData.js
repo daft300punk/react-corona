@@ -6,7 +6,6 @@ const initialState = {
   sizeOfPoint: 2,
   isRequesting: false,
   errorMsg: '',
-  isDataFetchedFirstTime: false
 };
 
 export default function(state = initialState, action) {
@@ -24,7 +23,6 @@ export default function(state = initialState, action) {
         data: [...(action.data)],
         isRequesting: false,
         vizType: viz,
-        isDataFetchedFirstTime: true
       });
 
     case actionTypes.ERROR:
