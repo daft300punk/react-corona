@@ -73,3 +73,45 @@
   }
 
 }
+
+@media only screen
+  and (max-width: 800px) {
+    .bottombar {
+      flex-flow: wrap;
+      border-top: none;
+      background: black;
+      position: normal;
+      
+      .logo {
+        position: absolute;
+        top: calc(-100vh + 80px);
+        border: none;
+        width: 100%;
+        border-bottom: 2px solid rgba(255, 255, 255, .1);
+
+        img {
+          display: inline;
+        }
+      }
+
+      .logo::after {
+        content: 'TOPCODER';
+        font-weight: bold;
+      }
+
+      .category {
+        flex-grow: 0;
+        border: none;
+        padding: 0 20px 0 20px;
+        margin: 0 8px 8px 8px;
+        height: 36px;
+        border: 1px solid white;
+        border-radius: 20px;
+      }
+
+      .active {
+        background: white;
+        color: black;
+      }
+    }
+  }

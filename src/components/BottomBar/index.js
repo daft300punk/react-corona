@@ -20,18 +20,17 @@ const BottomBar = ({
 
   return (
     <div className="bottombar">
-      <div>
+      <div className="logo">
         <a href="http://www.topcoder.com" target="_blank">
           <img src={require('./logo.png')}/>
         </a>
       </div>
       {
         categoryTypes.map((categoryText, i) => {
-          let className='';
+          let className='category ';
           if(selectedCategory === categoryText)
             className += 'active';
           const classSpan = modifyClassNameHelper(categoryText);
-          console.log(className);
           return (
             <div
               key={i}
