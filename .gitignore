@@ -40,3 +40,6 @@ dist
 .DS_Store
 
 deploy/dist
+deploy/.git
+deploy/.gitignore
+deploy/node_modules

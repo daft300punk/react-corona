@@ -1,6 +1,5 @@
-### Video and Live Heroku deploy
-1. Video - 
-2. Live Deploy - 
+### Live Heroku deploy
+1. Live Deploy - https://serene-woodland-84470.herokuapp.com/
 
 ### Initial Setup
 1. Clone the repsitory
@@ -10,9 +9,11 @@
 5. This is based on react-slingshot starter kit. You may search for it in case some unforeseen error crops up.
 
 ### Other options
-1. ```npm run build``` : spits the output in ```/deploy/dist```. A simple node server lives in ```/deploy/server.js```, configured to use files from ```/deploy/dist```.
-2. ```npm run build``` : starts server with production build, make sure you run this command only after building.
-3. Other commands can be referred to from ```package.json```
+1. ```npm run build``` spits the output in ```/deploy/dist```. A simple node server lives in ```/deploy/server.js```, configured to use files from ```/deploy/dist```.
+2. Get inside ```/deploy``` folder and then ```npm install```, to install dependecies of simple express server.
+3. Come out to root, ```npm start``` starts server with production build, make sure you run this command only after building.
+4. ```npm run test```, ```npm run lint``` for testing and linting.
+5. Other commands can be referred to from ```package.json```
 
 ### Notes
 + Currently there are 5 categories. You can see them in the Bottombar.
