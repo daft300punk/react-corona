@@ -3,14 +3,14 @@ import initGlobe from '../components/Globe/libs/initGlobe';
 import getDataApi from '../utils/mockDataApi';
 
 // on first load
-const firstLoad = () => ({
+export const firstLoad = () => ({
   type: actionTypes.FIRST_LOAD,
 });
 
-const animate = (showAnimation) => ({
+export const animate = (showAnimation) => ({
   type: actionTypes.SHOW_ANIMATION,
   showAnimation: showAnimation
-})
+});
 
 // Filters and categories
 export const category = (selectedCategory) => ({
@@ -76,7 +76,7 @@ export const getData = () => (dispatch, getState) => {
   });
 };
 
-const welcomeHelper = (dispatch) => {
+export const welcomeHelper = (dispatch) => {
   dispatch(firstLoad());
   dispatch(animate(true));
   setTimeout(() => {
