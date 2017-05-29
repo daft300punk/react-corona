@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 import selectedOptions from './selectedOptions';
 import globeData from './globeData';
-import firstLoad from './fristLoad';
+import firstLoad from './firstLoad';
 
  export default combineReducers({
    selectedOptions,
