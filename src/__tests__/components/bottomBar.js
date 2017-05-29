@@ -8,7 +8,7 @@ describe('Bottombar Component', () => {
     const component = renderer.create(
       <BottomBar
         selectedCategory={'all activity'}
-        changeSelectedCategory={() => {}}
+        changeSelectedCategory={() => { }}
       />
     );
     let tree = component.toJSON();

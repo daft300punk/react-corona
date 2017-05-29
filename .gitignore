@@ -39,4 +39,4 @@ dist
 # Mac files
 .DS_Store
 
-deploy
+deploy/dist

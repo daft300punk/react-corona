@@ -43,7 +43,7 @@ describe('globeData redcer tests', () => {
   it('should handle RECEIVE_DATA', () => {
     const action = {
       type: actionTypes.RECEIVE_DATA,
-      data: [{lat: 0, long: 0, magnitude: 1}]
+      data: [{ lat: 0, long: 0, magnitude: 1 }]
     };
 
     const state = {
@@ -55,7 +55,7 @@ describe('globeData redcer tests', () => {
     };
 
     const expectedState = {
-      data: [{lat: 0, long: 0, magnitude: 1}],
+      data: [{ lat: 0, long: 0, magnitude: 1 }],
       vizType: 'magnitude',
       sizeOfPoint: 2,
       isRequesting: false,

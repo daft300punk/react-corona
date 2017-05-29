@@ -8,7 +8,7 @@ describe('Filters Component', () => {
     const component = renderer.create(
       <Filters
         selectedCategory={'all activity'}
-        changeSelectedCategory={() => {}}
+        changeSelectedCategory={() => { }}
         selectedFilter={'all time'}
       />
     );

@@ -1,15 +1,20 @@
 import React from 'react';
 import './style.scss';
-import {categories} from '../../constants/categoriesAndFilters';
+import { categories } from '../../constants/categoriesAndFilters';
 import PropTypes from 'prop-types';
 
+/*
+  The filters component hanldes filtering the data of a particular
+  category. 4 filters are available as of now. This can be changed as
+  needed.
+*/
 const Filters = ({
   selectedCategory,
   selectedFilter,
   changeSelectedFilter
 }) => {
   const filters = categories[selectedCategory].filters;
-  return(
+  return (
     <div className="container">
       <h2>{selectedCategory.toUpperCase()}</h2>
       <p>{categories[selectedCategory].text}</p>
@@ -18,7 +23,7 @@ const Filters = ({
         {
           filters.map((filter, i) => {
             let className = '';
-            if(selectedFilter === filter.toLowerCase())
+            if (selectedFilter === filter.toLowerCase())
               className += 'active';
             return (
               <li

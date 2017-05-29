@@ -8,11 +8,16 @@ const initialState = {
   errorMsg: '',
 };
 
-export default function(state = initialState, action) {
+/*
+  Reducer to handle data fetching
+  @vizType is set to true, if the data contains magnitude key, 
+  otherwise it is set to flat.
+*/
+export default function (state = initialState, action) {
   let viz = 'flat';
-  if(action.data && action.data.length > 0)
+  if (action.data && action.data.length > 0)
     viz = action.data[0].magnitude ? 'magnitude' : 'flat';
-  switch(action.type) {
+  switch (action.type) {
     case actionTypes.REQUEST_DATA:
       return Object.assign({}, state, {
         isRequesting: true
@@ -28,7 +33,7 @@ export default function(state = initialState, action) {
     case actionTypes.ERROR:
       return Object.assign({}, state, {
         errorMessage: action.errorMessage,
-        isRequesting:false
+        isRequesting: false
       });
     default: return state;
   }

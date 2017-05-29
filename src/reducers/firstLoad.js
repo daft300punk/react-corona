@@ -5,14 +5,19 @@ const initialState = {
   isFirstLoad: true
 };
 
-export default function(state = initialState, action) {
-  switch(action.type) {
+/*
+  Handles the state related to showing welcome animation.
+  Welcome animation is shown only on the initial data load.
+  Subsequent data loads are just accompanied by spinning loader.
+*/
+export default function (state = initialState, action) {
+  switch (action.type) {
     case actionTypes.FIRST_LOAD:
       return Object.assign({}, state, {
         isFirstLoad: false
       });
     case actionTypes.SHOW_ANIMATION:
-      return Object.assign({},state, {
+      return Object.assign({}, state, {
         showAnimation: action.showAnimation
       });
     default: return state;

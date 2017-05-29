@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import Globe from '../components/Globe';
 import PropTypes from 'prop-types';
 
+/*
+  See Globe component for details.
+*/
 const GlobeContainer = ({
   data,
   vizType,
@@ -11,7 +14,10 @@ const GlobeContainer = ({
 }) => {
   return (
 
-    isRequesting ? <div/> : (
+    /*
+      Don't show the globe if the data is fetching.
+    */
+    isRequesting ? <div /> : (
       <Globe
         data={data}
         vizType={vizType}

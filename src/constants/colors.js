@@ -1,3 +1,7 @@
+/*
+  Colors based on Topcoder logo. Normalized colors are 
+  used by THREEjs.
+*/
 export const COLORS_NORMALIZED = {
   'des': {
     r: 40 / 255,

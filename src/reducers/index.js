@@ -4,9 +4,12 @@ import selectedOptions from './selectedOptions';
 import globeData from './globeData';
 import firstLoad from './firstLoad';
 
- export default combineReducers({
-   selectedOptions,
-   globeData,
-   firstLoad,
-   routing: routerReducer
- });
+/*
+  Root reducer
+*/
+export default combineReducers({
+  selectedOptions,
+  globeData,
+  firstLoad,
+  routing: routerReducer
+});

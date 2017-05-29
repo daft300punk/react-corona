@@ -62,7 +62,7 @@ describe('Sync action creators', () => {
     };
 
     expect(actions.receiveData(data))
-    .toEqual(expectedAction);
+      .toEqual(expectedAction);
   });
 
   it('should create action for setting error', () => {
@@ -74,6 +74,6 @@ describe('Sync action creators', () => {
     };
 
     expect(actions.error(errorMessage))
-    .toEqual(expectedAction);
+      .toEqual(expectedAction);
   });
 });

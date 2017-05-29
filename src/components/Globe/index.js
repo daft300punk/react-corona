@@ -2,6 +2,13 @@ import React, { Component } from 'react';
 import initGlobe from './libs/initGlobe';
 import PropTypes from 'prop-types';
 
+/*
+  Renders the central globe. @data is array of data points that
+  needs to be rendered on the globe. @sizeOfPoint is the size of
+  circle/square base of data points. You can change it to see 
+  how it affects the size of rendered data points. The default 
+  value is 2. @vizType is the type of visualiztion - flat or magnitude.
+*/
 class Globe extends Component {
   constructor(props) {
     super(props);
@@ -15,7 +22,7 @@ class Globe extends Component {
     } = this.props;
 
     initGlobe(data, sizeOfPoint, vizType);
-    
+
     window.addEventListener('resize', () => {
       document.getElementsByTagName('canvas')[0].remove();
       initGlobe(data, sizeOfPoint, vizType);
@@ -24,7 +31,7 @@ class Globe extends Component {
 
   render() {
     return (
-      <div id="container"/>
+      <div id="container" />
     );
   }
 }
