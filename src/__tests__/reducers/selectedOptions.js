@@ -56,5 +56,5 @@ describe('Test selectedOptions reducer', () => {
       category: 'design',
       filter: 'last month'
     });
-  })
+  });
 });
